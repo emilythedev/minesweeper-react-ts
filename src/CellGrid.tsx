@@ -15,11 +15,9 @@ const cellGridStyles = {
 const CellGrid = ({id, content}: Props) => {
   const [state, setState] = useAtom(cellStateAtomFamily(id))
   function handleClick() {
-    if (state === 'flagged') return
     setState('revealed')
   }
   function handleFlag(e: MouseEvent<HTMLElement>) {
-    if (state === 'revealed') return
     setState(state === 'flagged' ? 'normal' : 'flagged')
     e.preventDefault()
   }

@@ -1,10 +1,11 @@
+import { Provider } from 'jotai'
 import './App.css'
 import Minesweeper from './Minesweeper'
 
 function App() {
 
   return (
-    <Minesweeper />
+    <Provider><Minesweeper /></Provider>
   )
 }
 

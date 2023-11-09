@@ -1,10 +1,15 @@
-import { useAtom } from "jotai"
-import { unrevealedBombCountAtom } from "./atoms"
+import { useAtom, useAtomValue } from "jotai"
+import { endAtom, flagCountAtom, winAtom } from "./atoms"
 
 const Status = () => {
-  const [bombCount] = useAtom(unrevealedBombCountAtom)
+  const [flagCount] = useAtom(flagCountAtom)
+  const ended = useAtomValue(endAtom)
+  const win = useAtomValue(winAtom)
+  if (win || ended) {
+    return <div>{win ? 'win' : 'lose'}!</div>
+  }
   return (
-    <div>Bombs: {bombCount}</div>
+    <div>Unused Flags: {flagCount}</div>
   )
 }
 
