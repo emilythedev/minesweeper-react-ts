@@ -1,9 +1,8 @@
-import CellGrid from "./CellGrid"
+import { useHydrateAtoms } from "jotai/utils"
+import Board from "./Board"
+import Status from "./Status"
+import { boardAtom, columnCountAtom, rowCountAtom, totalBombCountAtom } from "./atoms"
 
-type Props = {}
-
-const rows = 4
-const cols = 5
 const board = [
   [1, 1, 2, 3, '*'],
   [1, '*', 3, '*', '*'],
@@ -11,22 +10,19 @@ const board = [
   [0, 0, 1, 2, '*'],
 ] as Array<Array<number | '*'>>
 
-const boardStyles = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(5, 50px)',
-  gridTemplateRows: 'repeat(4, 50px)',
-}
+const Minesweeper = () => {
+  useHydrateAtoms([
+    [rowCountAtom, 4],
+    [columnCountAtom, 5],
+    [boardAtom, board],
+    [totalBombCountAtom, 7],
+  ])
 
-const Minesweeper = (props: Props) => {
   return (
-    <div style={boardStyles}>
-      {board.map((row, ri) => {
-        return row.map((cell, ci) => {
-          const id = ri * cols + ci
-          return (<CellGrid key={id} id={id} content={cell}></CellGrid>)
-        })
-      })}
-    </div>
+    <>
+      <Status />
+      <Board cols={5} board={board} />
+    </>
   )
 }
 
