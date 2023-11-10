@@ -5,7 +5,7 @@ const Status = () => {
   const [flagCount] = useAtom(flagCountAtom)
   const ended = useAtomValue(endAtom)
   const win = useAtomValue(winAtom)
-  if (win || ended) {
+  if (ended) {
     return <div>{win ? 'win' : 'lose'}!</div>
   }
   return (

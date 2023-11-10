@@ -3,14 +3,16 @@ import { atomFamily } from "jotai/utils";
 
 export type Cell = number | '*'
 type CellState = 'normal' | 'revealed' | 'flagged'
-const endAtom = atom<boolean>(false)
+
 const rowCountAtom = atom<number>(0)
 const columnCountAtom = atom<number>(0)
 const flagCountAtom = atom<number>(0)
 const cellArrayAtom = atom<Cell[]>([])
 const bombIdArrayAtom = atom<number[]>([])
+
 const flagIdArrayAtom = atom<number[]>([])
 const unrevealedCellCountAtom = atom<number>(0)
+
 const winAtom = atom((get) => {
   const bombs = get(bombIdArrayAtom)
   const flags = get(flagIdArrayAtom)
@@ -23,6 +25,9 @@ const winAtom = atom((get) => {
   }
   return false
 })
+const loseAtom = atom<boolean>(false)
+const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
+
 const boardAtom = atom([], (get, set, update: Cell[][]) => {
   const rows = update.length
   const cols = update[0]?.length || 0
@@ -45,12 +50,13 @@ const boardAtom = atom([], (get, set, update: Cell[][]) => {
   set(cellArrayAtom, update.flat())
   set(unrevealedCellCountAtom, rows * cols - bombIds.length)
 })
+
 const cellStateAtom = atomFamily((id: number) => atom<CellState>('normal'))
 const cellStateAtomFamily = atomFamily((id: number) => {
   return atom(
     (get) => get(cellStateAtom(id)),
     (get, set, newState: CellState) => {
-      if (get(winAtom) || get(endAtom)) return
+      if (get(endAtom)) return
 
       const state = get(cellStateAtom(id))
       if (state === 'flagged' && newState === 'normal') {
@@ -65,7 +71,7 @@ const cellStateAtomFamily = atomFamily((id: number) => {
         if (newState === 'revealed') {
           set(unrevealedCellCountAtom, (prev) => prev - 1)
           if (get(cellArrayAtom)[id] === '*') {
-            set(endAtom, true)
+            set(loseAtom, true)
           } else if (get(cellArrayAtom)[id] === 0) {
             // TODO: reveal surrounding cells
           }
@@ -77,7 +83,6 @@ const cellStateAtomFamily = atomFamily((id: number) => {
     }
   )
 })
-
 
 export {
   boardAtom, cellArrayAtom, cellStateAtomFamily, endAtom, flagCountAtom,
