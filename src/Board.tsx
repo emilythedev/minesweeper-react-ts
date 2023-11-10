@@ -1,17 +1,17 @@
 import { useAtomValue } from "jotai"
 import CellGrid from "./CellGrid"
-import { cellArrayAtom } from "./atoms"
-
-const boardStyles = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(5, 50px)',
-  gridTemplateRows: 'repeat(4, 50px)',
-}
+import { cellArrayAtom, columnCountAtom, rowCountAtom } from "./atoms"
 
 const Board = () => {
+  const rows = useAtomValue(rowCountAtom)
+  const cols = useAtomValue(columnCountAtom)
   const cells = useAtomValue(cellArrayAtom)
   return (
-    <div style={boardStyles}>
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: `repeat(${cols}, 50px)`,
+      gridTemplateRows: `repeat(${rows}, 50px)`
+    }}>
       {cells.map((cell, id) => {
         return (<CellGrid key={id} id={id} content={cell}></CellGrid>)
       })}

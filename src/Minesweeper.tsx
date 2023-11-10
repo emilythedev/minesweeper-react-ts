@@ -1,16 +1,14 @@
 import { useHydrateAtoms } from "jotai/utils"
+import { useMemo } from "react"
 import Board from "./Board"
 import Status from "./Status"
 import { boardAtom } from "./atoms"
+import { generateBoard } from "./helpers"
 
-const board = [
-  [1, 1, 2, 3, '*'],
-  [1, '*', 3, '*', '*'],
-  [1, 1, 3, '*', '*'],
-  [0, 0, 1, 2, 2],
-] as Array<Array<number | '*'>>
+interface Props extends LevelProps {}
 
-const Minesweeper = () => {
+const Minesweeper = (props: Props) => {
+  const board = useMemo(() => generateBoard(props.rows, props.cols, props.totalBombs), [])
   useHydrateAtoms([
     [boardAtom, board],
   ])

@@ -1,7 +1,6 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 
-export type Cell = number | '*'
 type CellState = 'normal' | 'revealed' | 'flagged'
 
 const rowCountAtom = atom<number>(0)
@@ -29,6 +28,7 @@ const loseAtom = atom<boolean>(false)
 const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
 
 const boardAtom = atom([], (get, set, update: Cell[][]) => {
+  console.log(update)
   const rows = update.length
   const cols = update[0]?.length || 0
   set(rowCountAtom, rows)
@@ -85,6 +85,5 @@ const cellStateAtomFamily = atomFamily((id: number) => {
 })
 
 export {
-  boardAtom, cellArrayAtom, cellStateAtomFamily, endAtom, flagCountAtom,
-  winAtom
+  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, rowCountAtom, winAtom
 };
