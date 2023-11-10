@@ -1,27 +1,30 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
+import { difference } from 'lodash';
 
 type CellState = 'normal' | 'revealed' | 'flagged'
 
 const rowCountAtom = atom<number>(0)
 const columnCountAtom = atom<number>(0)
-const flagCountAtom = atom<number>(0)
 const cellArrayAtom = atom<Cell[]>([])
 const bombIdArrayAtom = atom<number[]>([])
 
 const flagIdArrayAtom = atom<number[]>([])
-const unrevealedCellCountAtom = atom<number>(0)
+const unvisitedCellCountAtom = atom<number>(0)
+const flagCountAtom = atom<number>((get) => {
+  return get(bombIdArrayAtom).length - get(flagIdArrayAtom).length
+})
 
 const winAtom = atom((get) => {
   const bombs = get(bombIdArrayAtom)
   const flags = get(flagIdArrayAtom)
-  if (bombs.length === flags.length && flags.every((flag) => bombs.indexOf(flag) > -1)) {
-    return true
+  if (flags.every((flag) => bombs.includes(flag))) {
+    const bombsLeft = difference(bombs, flags)
+    if (bombsLeft.length === get(unvisitedCellCountAtom)) {
+      return true
+    }
   }
 
-  if (get(unrevealedCellCountAtom) === 0 && flags.every((flag) => bombs.indexOf(flag) > -1)) {
-    return true
-  }
   return false
 })
 const loseAtom = atom<boolean>(false)
@@ -45,10 +48,9 @@ const boardAtom = atom([], (get, set, update: Cell[][]) => {
       }
     })
   })
-  set(flagCountAtom, bombIds.length)
   set(bombIdArrayAtom, bombIds)
   set(cellArrayAtom, update.flat())
-  set(unrevealedCellCountAtom, rows * cols - bombIds.length)
+  set(unvisitedCellCountAtom, rows * cols)
 })
 
 const cellStateAtom = atomFamily((id: number) => atom<CellState>('normal'))
@@ -61,22 +63,26 @@ const cellStateAtomFamily = atomFamily((id: number) => {
       const state = get(cellStateAtom(id))
       if (state === 'flagged' && newState === 'normal') {
         set(cellStateAtom(id), newState)
-        set(flagCountAtom, (prev) => prev + 1)
+        set(unvisitedCellCountAtom, (prev) => prev + 1)
+
         const flags = [...get(flagIdArrayAtom)]
         flags.splice(flags.indexOf(id), 1)
         set(flagIdArrayAtom, flags)
-        set(unrevealedCellCountAtom, (prev) => prev + 1)
-      } else if (state === 'normal') {
+      }
+
+      if (state === 'normal') {
         set(cellStateAtom(id), newState)
+        set(unvisitedCellCountAtom, (prev) => prev - 1)
+
         if (newState === 'revealed') {
-          set(unrevealedCellCountAtom, (prev) => prev - 1)
           if (get(cellArrayAtom)[id] === '*') {
             set(loseAtom, true)
           } else if (get(cellArrayAtom)[id] === 0) {
             // TODO: reveal surrounding cells
           }
-        } else if (newState === 'flagged') {
-          set(flagCountAtom, prev => prev - 1)
+        }
+
+        if (newState === 'flagged') {
           set(flagIdArrayAtom, [...get(flagIdArrayAtom), id])
         }
       }
