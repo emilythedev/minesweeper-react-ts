@@ -1,12 +1,21 @@
 import { useAtom, useAtomValue } from "jotai"
 import { endAtom, flagCountAtom, winAtom } from "./atoms"
 
-const Status = () => {
+interface Props {
+  onRestart(): void
+}
+
+const Status = ({onRestart}: Props) => {
   const [flagCount] = useAtom(flagCountAtom)
   const ended = useAtomValue(endAtom)
   const win = useAtomValue(winAtom)
   if (ended) {
-    return <div>{win ? 'win' : 'lose'}!</div>
+    return (
+      <div>
+        <span>{win ? 'win' : 'lose'}!</span>
+        <button type="button" onClick={onRestart}>Restart</button>
+      </div>
+    )
   }
   return (
     <div>Unused Flags: {flagCount}</div>

@@ -5,7 +5,9 @@ import Status from "./Status"
 import { boardAtom } from "./atoms"
 import { generateBoard } from "./helpers"
 
-interface Props extends LevelProps {}
+interface Props extends LevelProps {
+  onRestart(): void
+}
 
 const Minesweeper = (props: Props) => {
   const board = useMemo(() => generateBoard(props.rows, props.cols, props.totalBombs), [])
@@ -15,7 +17,7 @@ const Minesweeper = (props: Props) => {
 
   return (
     <>
-      <Status />
+      <Status onRestart={props.onRestart}/>
       <Board />
     </>
   )

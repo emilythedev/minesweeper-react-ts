@@ -8,7 +8,11 @@ function App() {
   const [level, setLevel] = useState<LevelProps | null>(null)
 
   if (level) {
-    return (<Provider><Minesweeper {...level} /></Provider>)
+    return (
+      <Provider>
+        <Minesweeper {...level} onRestart={() => setLevel(null)}/>
+      </Provider>
+    )
   }
 
   return (
