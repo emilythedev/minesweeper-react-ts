@@ -1,3 +1,5 @@
+import Button from "./Button"
+
 interface Props {
   selectLevel(levelProps: LevelProps): void
 }
@@ -26,7 +28,7 @@ const Level = ({selectLevel}: Props) => {
     <div>
       {levels.map(({name, props}) => {
         return (
-          <button key={name} type="button" onClick={() => selectLevel(props)}>{name}</button>
+          <Button key={name} type="button" onClick={() => selectLevel(props)}>{name}</Button>
         )
       })}
     </div>

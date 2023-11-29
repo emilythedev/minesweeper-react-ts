@@ -10,7 +10,8 @@ const Board = () => {
     <div style={{
       display: 'grid',
       gridTemplateColumns: `repeat(${cols}, 50px)`,
-      gridTemplateRows: `repeat(${rows}, 50px)`
+      gridTemplateRows: `repeat(${rows}, 50px)`,
+      gridGap: '2px',
     }}>
       {cells.map((cell, id) => {
         return (<CellGrid key={id} id={id} content={cell}></CellGrid>)
