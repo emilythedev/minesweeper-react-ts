@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 import FlagWord from "./FlagWord"
 import MouseSvg from './assets/mouse.svg?react'
 
-const MouseIcon = styled(MouseSvg)<{click: 'left' | 'right'}>`
+const MouseIcon = styled(MouseSvg)<{$click: 'left' | 'right'}>`
   width: 36px;
   height: 36px;
   fill: none;
@@ -11,7 +11,7 @@ const MouseIcon = styled(MouseSvg)<{click: 'left' | 'right'}>`
   margin: 8px;
 
   ${(props) => {
-    switch (props.click) {
+    switch (props.$click) {
       case 'left':
         return css`
           path:nth-child(2) {
@@ -45,9 +45,9 @@ const CellOutline = styled.span`
 const Tutorial = () => {
   return (
     <TutorialContainer>
-        <MouseIcon click="left" />
+        <MouseIcon $click="left" />
         <div>Reveal the <CellOutline>cell</CellOutline>.</div>
-        <MouseIcon click="right" />
+        <MouseIcon $click="right" />
         <div>Set/Unset a <FlagWord />.</div>
     </TutorialContainer>
   )
