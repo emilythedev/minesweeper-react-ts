@@ -16,7 +16,7 @@ const StatusContainer = styled.div`
   justify-content: center;
 
   .count {
-    color: #02c988;
+    color: ${props => props.theme.primary};
     font-weight: bold;
     font-size: 1.25em;
     margin: 0 8px;

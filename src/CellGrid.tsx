@@ -8,18 +8,6 @@ interface Props {
   content: Cell,
 }
 
-const dangerColors = [
-  '#303030',
-  '#6b6b6b',
-  '#64afc6',
-  '#55ad5e',
-  '#dcdc43',
-  '#e6843e',
-  '#cc523a',
-  '#a12419',
-  '#7d1041',
-]
-
 const Grid = styled.div`
   border: 1px solid #333;
   cursor: pointer;
@@ -30,18 +18,18 @@ const Grid = styled.div`
   font-size: 32px;
 
   &:hover, &:active {
-    border-color: #02c988;
+    border-color: ${props => props.theme.primary};
   }
 `
 
 const FlaggedGrid = styled(Grid)`
   &::before {
     content: 'F';
-    color: black;
+    color: ${props => props.theme.colors.black};
     font-style: italic;
     font-size: 1.25em;
   }
-  background-color: #02c988;
+  background-color: ${props => props.theme.primary};
 `
 
 const RevealedGrid = styled(Grid)<{content: Cell}>`
@@ -57,11 +45,11 @@ const RevealedGrid = styled(Grid)<{content: Cell}>`
   ${(props) => {
     if (typeof props.content === 'number') {
       return css`
-        color: ${dangerColors[props.content]};
+        color: ${props.theme.cellColors[props.content]};
       `
     }
     return css`
-      color: #c20000;
+      color: ${props.theme.colors.bomb};
       font-size: 64px;
     `
   }}

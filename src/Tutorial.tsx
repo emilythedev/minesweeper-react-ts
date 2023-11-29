@@ -6,7 +6,7 @@ const MouseIcon = styled(MouseSvg)<{click: 'left' | 'right'}>`
   width: 36px;
   height: 36px;
   fill: none;
-  stroke: #02c988;
+  stroke: ${props => props.theme.primary};
   stroke-width: 1px;
   margin: 8px;
 
@@ -16,14 +16,14 @@ const MouseIcon = styled(MouseSvg)<{click: 'left' | 'right'}>`
         return css`
           path:nth-child(2) {
             stroke-width: 0;
-            fill: #02c988;
+            fill: ${props => props.theme.primary};
           }
         `
       case 'right':
         return css`
           path:nth-child(3) {
             stroke-width: 0;
-            fill: #02c988;
+            fill: ${props => props.theme.primary};
           }
         `
     }
