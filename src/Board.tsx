@@ -1,22 +1,17 @@
 import { useAtomValue } from "jotai"
+import BoardContainer from "./BoardContainer"
 import CellGrid from "./CellGrid"
-import { cellArrayAtom, columnCountAtom, rowCountAtom } from "./atoms"
+import { cellArrayAtom, columnCountAtom } from "./atoms"
 
 const Board = () => {
-  const rows = useAtomValue(rowCountAtom)
   const cols = useAtomValue(columnCountAtom)
   const cells = useAtomValue(cellArrayAtom)
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: `repeat(${cols}, 50px)`,
-      gridTemplateRows: `repeat(${rows}, 50px)`,
-      gridGap: '2px',
-    }}>
+    <BoardContainer $columns={cols}>
       {cells.map((cell, id) => {
         return (<CellGrid key={id} id={id} content={cell}></CellGrid>)
       })}
-    </div>
+    </BoardContainer>
   )
 }
 
