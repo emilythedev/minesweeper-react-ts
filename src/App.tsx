@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import Level from './Level'
 import Minesweeper from './Minesweeper'
+import Tutorial from './Tutorial'
 
 function App() {
   const [level, setLevel] = useState<LevelProps | null>(null)
@@ -16,7 +17,10 @@ function App() {
   }
 
   return (
-    <Level selectLevel={setLevel} />
+    <div>
+      <Tutorial />
+      <Level selectLevel={setLevel} />
+    </div>
   )
 }
 
