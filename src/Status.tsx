@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue } from "jotai"
 import styled from "styled-components"
 import Button from "./Button"
+import FlagWord from "./FlagWord"
 import { endAtom, flagCountAtom, winAtom } from "./atoms"
 
 interface Props {
@@ -13,16 +14,6 @@ const StatusContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .flag {
-    font-style: italic;
-    font-weight: bold;
-    background-color: #02c988;
-    color: black;
-    padding: 0 0.4em 0 0.4em;
-    margin: 0 2px 0 0.5em;
-    font-size: 1.1em;
-  }
 
   .count {
     color: #02c988;
@@ -45,7 +36,7 @@ const Status = ({onRestart}: Props) => {
     <StatusContainer>
       {!ended ? (
         <div className="grow-1">
-          Unused <span className="flag">F</span>lags: <span className="count">{flagCount}</span>
+          Unused <FlagWord plural />: <span className="count">{flagCount}</span>
         </div>
       ) : (
         <span className="grow-1">{win ? 'win' : 'lose'}!</span>

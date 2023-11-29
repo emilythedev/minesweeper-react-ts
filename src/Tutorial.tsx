@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import FlagWord from "./FlagWord"
 import MouseSvg from './assets/mouse.svg?react'
 
 const MouseIcon = styled(MouseSvg)<{click: 'left' | 'right'}>`
@@ -42,7 +43,7 @@ const Tutorial = () => {
         <MouseIcon click="left" />
         <div>Reveal the cell.</div>
         <MouseIcon click="right" />
-        <div>Set/Unset a flag.</div>
+        <div>Set/Unset a <FlagWord />.</div>
     </TutorialContainer>
   )
 }
