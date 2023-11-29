@@ -2,8 +2,6 @@ import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { difference } from 'lodash';
 
-type CellState = 'normal' | 'revealed' | 'flagged'
-
 const rowCountAtom = atom<number>(0)
 const columnCountAtom = atom<number>(0)
 const cellArrayAtom = atom<Cell[]>([])
@@ -31,7 +29,7 @@ const loseAtom = atom<boolean>(false)
 const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
 
 const boardAtom = atom([], (get, set, update: Cell[][]) => {
-  console.log(update)
+  console.table(update)
   const rows = update.length
   const cols = update[0]?.length || 0
   set(rowCountAtom, rows)
