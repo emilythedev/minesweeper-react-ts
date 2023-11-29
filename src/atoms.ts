@@ -18,7 +18,7 @@ const winAtom = atom((get) => {
   const flags = get(flagIdArrayAtom)
   if (flags.every((flag) => bombs.includes(flag))) {
     const bombsLeft = difference(bombs, flags)
-    if (bombsLeft.length === get(unvisitedCellCountAtom)) {
+    if (!bombsLeft.length || bombsLeft.length === get(unvisitedCellCountAtom)) {
       return true
     }
   }
