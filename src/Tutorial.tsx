@@ -37,11 +37,16 @@ const TutorialContainer = styled.div`
   margin: 16px;
 `
 
+const CellOutline = styled.span`
+  border: 1px solid ${props => props.theme.primary};
+  padding: 2px 4px;
+`
+
 const Tutorial = () => {
   return (
     <TutorialContainer>
         <MouseIcon click="left" />
-        <div>Reveal the cell.</div>
+        <div>Reveal the <CellOutline>cell</CellOutline>.</div>
         <MouseIcon click="right" />
         <div>Set/Unset a <FlagWord />.</div>
     </TutorialContainer>
