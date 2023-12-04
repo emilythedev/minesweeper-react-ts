@@ -8,7 +8,7 @@ const MouseIcon = styled(MouseSvg)<{$click: 'left' | 'right'}>`
   fill: none;
   stroke: ${props => props.theme.primary};
   stroke-width: 1px;
-  margin: 8px;
+  margin: 16px;
 
   ${(props) => {
     switch (props.$click) {
@@ -31,10 +31,11 @@ const MouseIcon = styled(MouseSvg)<{$click: 'left' | 'right'}>`
 `
 const TutorialContainer = styled.div`
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: max-content max-content;
   align-items: center;
+  text-align: left;
 
-  margin: 16px;
+  margin-bottom: 32px;
 `
 
 const CellOutline = styled.span`
