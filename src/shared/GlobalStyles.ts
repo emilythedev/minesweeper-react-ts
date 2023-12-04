@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+import { createGlobalStyle } from "styled-components";
 
+const GlobalStyles = createGlobalStyle`
 :root {
   font-family: 'Space Mono', monospace, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.black};
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,3 +24,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+`
+
+export default GlobalStyles
