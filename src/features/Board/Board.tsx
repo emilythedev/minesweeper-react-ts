@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai"
 import styled from "styled-components"
-import BoardCell from "./features/BoardCell"
-import { cellArrayAtom, columnCountAtom } from "./shared/atoms"
+import { cellArrayAtom, columnCountAtom } from "../../shared/atoms"
+import BoardCell from "./BoardCell"
 
 interface Props {
   $columns: number,
