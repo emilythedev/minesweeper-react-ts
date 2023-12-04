@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai"
 import styled from "styled-components"
-import CellGrid from "./CellGrid"
+import BoardCell from "./CellGrid"
 import { cellArrayAtom, columnCountAtom } from "./shared/atoms"
 
 interface Props {
@@ -20,7 +20,7 @@ const Board = () => {
   return (
     <BoardContainer $columns={cols}>
       {cells.map((cell, id) => {
-        return (<CellGrid key={id} id={id} content={cell}></CellGrid>)
+        return (<BoardCell key={id} id={id} content={cell}></BoardCell>)
       })}
     </BoardContainer>
   )

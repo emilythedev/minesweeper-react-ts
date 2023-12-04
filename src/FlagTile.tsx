@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import BaseTile from "./shared/ui/BaseTile";
 
-const FlaggedGrid = styled(BaseTile)`
+const FlagTile = styled(BaseTile)`
   &::before {
     content: 'F';
     color: ${props => props.theme.colors.black};
@@ -11,4 +11,4 @@ const FlaggedGrid = styled(BaseTile)`
   background-color: ${props => props.theme.primary};
 `
 
-export default FlaggedGrid
+export default FlagTile

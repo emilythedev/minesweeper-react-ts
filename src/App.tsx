@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import './App.css'
 import Minesweeper from './Minesweeper'
-import Level from './features/Level'
+import SelectLevel from './features/SelectLevel'
 import Tutorial from './features/Tutorial'
 import theme from './shared/theme'
 
@@ -19,7 +19,7 @@ function App() {
       ) : (
         <div>
           <Tutorial />
-          <Level selectLevel={setLevel} />
+          <SelectLevel onSelect={setLevel} />
         </div>
       )}
     </ThemeProvider>

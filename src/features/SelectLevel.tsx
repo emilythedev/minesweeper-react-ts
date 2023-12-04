@@ -1,7 +1,7 @@
 import Button from "../shared/ui/Button"
 
 interface Props {
-  selectLevel(levelProps: LevelProps): void
+  onSelect(levelProps: LevelProps): void
 }
 
 const levels = [
@@ -23,16 +23,16 @@ const levels = [
   },
 ] as ({ name: string, props: LevelProps })[]
 
-const Level = ({selectLevel}: Props) => {
+const SelectLevel = ({onSelect}: Props) => {
   return (
     <div>
       {levels.map(({name, props}) => {
         return (
-          <Button key={name} type="button" onClick={() => selectLevel(props)}>{name}</Button>
+          <Button key={name} type="button" onClick={() => onSelect(props)}>{name}</Button>
         )
       })}
     </div>
   )
 }
 
-export default Level
+export default SelectLevel

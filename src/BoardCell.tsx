@@ -1,6 +1,6 @@
 import { useAtom } from "jotai"
 import { MouseEvent } from "react"
-import FlaggedGrid from "./FlagTile"
+import FlagTile from "./FlagTile"
 import { cellStateAtomFamily } from "./shared/atoms"
 import BaseTile from "./shared/ui/BaseTile"
 import RevealedTile from "./shared/ui/RevealedTile"
@@ -10,7 +10,7 @@ interface Props {
   content: Cell,
 }
 
-const CellGrid = ({id, content}: Props) => {
+const BoardCell = ({id, content}: Props) => {
   const [state, setState] = useAtom(cellStateAtomFamily(id))
 
   if (state === 'revealed') {
@@ -29,11 +29,11 @@ const CellGrid = ({id, content}: Props) => {
 
   let Component = BaseTile
   if (state === 'flagged') {
-    Component = FlaggedGrid
+    Component = FlagTile
   }
   return (
     <Component onClick={handleClick} onContextMenu={handleFlag} />
   )
 }
 
-export default CellGrid
+export default BoardCell
