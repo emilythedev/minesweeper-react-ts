@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BaseTile from "./shared/ui/BaseTile";
+import BaseTile from "./BaseTile";
 
 const FlagTile = styled(BaseTile)`
   &::before {

@@ -1,9 +1,9 @@
 import { useAtom } from "jotai"
 import { MouseEvent } from "react"
-import FlagTile from "./FlagTile"
-import { cellStateAtomFamily } from "./shared/atoms"
-import BaseTile from "./shared/ui/BaseTile"
-import RevealedTile from "./shared/ui/RevealedTile"
+import { cellStateAtomFamily } from "../shared/atoms"
+import BaseTile from "../shared/ui/BaseTile"
+import FlagTile from "../shared/ui/FlagTile"
+import RevealedTile from "../shared/ui/RevealedTile"
 
 interface Props {
   id: number,
