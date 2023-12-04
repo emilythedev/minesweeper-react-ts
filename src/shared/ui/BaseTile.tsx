@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 
-const Grid = styled.div<{$hoverable?: boolean}>`
+const BaseTile = styled.div<{$hoverable?: boolean}>`
   border: 1px solid #333;
   cursor: pointer;
   display: flex;
@@ -20,4 +20,4 @@ const Grid = styled.div<{$hoverable?: boolean}>`
   }}
 `
 
-export default Grid
+export default BaseTile

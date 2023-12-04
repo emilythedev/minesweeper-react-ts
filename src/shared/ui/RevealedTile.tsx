@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import Grid from "./Grid";
+import BaseTile from "./BaseTile";
 
-const RevealedGrid = styled(Grid) <{ $content: Cell; }> `
+const RevealedTile = styled(BaseTile) <{ $content: Cell; }> `
   border-color: transparent;
   &:hover, &:active {
     border-color: transparent;
@@ -24,4 +24,4 @@ const RevealedGrid = styled(Grid) <{ $content: Cell; }> `
   }}
 `;
 
-export default RevealedGrid
+export default RevealedTile

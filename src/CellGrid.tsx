@@ -1,9 +1,9 @@
 import { useAtom } from "jotai"
 import { MouseEvent } from "react"
-import FlaggedGrid from "./FlaggedGrid"
-import Grid from "./Grid"
-import RevealedGrid from "./RevealedGrid"
-import { cellStateAtomFamily } from "./atoms"
+import FlaggedGrid from "./FlagTile"
+import { cellStateAtomFamily } from "./shared/atoms"
+import BaseTile from "./shared/ui/BaseTile"
+import RevealedTile from "./shared/ui/RevealedTile"
 
 interface Props {
   id: number,
@@ -15,7 +15,7 @@ const CellGrid = ({id, content}: Props) => {
 
   if (state === 'revealed') {
     return (
-      <RevealedGrid $content={content} />
+      <RevealedTile $content={content} />
     )
   }
 
@@ -27,7 +27,7 @@ const CellGrid = ({id, content}: Props) => {
     e.preventDefault()
   }
 
-  let Component = Grid
+  let Component = BaseTile
   if (state === 'flagged') {
     Component = FlaggedGrid
   }

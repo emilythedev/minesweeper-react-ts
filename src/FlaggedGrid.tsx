@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Grid from "./Grid";
+import BaseTile from "./shared/ui/BaseTile";
 
-const FlaggedGrid = styled(Grid)`
+const FlaggedGrid = styled(BaseTile)`
   &::before {
     content: 'F';
     color: ${props => props.theme.colors.black};

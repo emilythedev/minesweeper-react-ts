@@ -2,10 +2,10 @@ import { Provider } from 'jotai'
 import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import './App.css'
-import Level from './Level'
 import Minesweeper from './Minesweeper'
-import Tutorial from './Tutorial'
-import theme from './theme'
+import Level from './features/Level'
+import Tutorial from './features/Tutorial'
+import theme from './shared/theme'
 
 function App() {
   const [level, setLevel] = useState<LevelProps | null>(null)

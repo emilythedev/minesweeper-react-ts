@@ -1,7 +1,18 @@
 import { useAtomValue } from "jotai"
-import BoardContainer from "./BoardContainer"
+import styled from "styled-components"
 import CellGrid from "./CellGrid"
-import { cellArrayAtom, columnCountAtom } from "./atoms"
+import { cellArrayAtom, columnCountAtom } from "./shared/atoms"
+
+interface Props {
+  $columns: number,
+}
+
+const BoardContainer = styled.div<Props>`
+  display: grid;
+  grid-template-columns: repeat(${props => props.$columns}, 50px);
+  grid-auto-rows: 50px;
+  grid-gap: 2px;
+`
 
 const Board = () => {
   const cols = useAtomValue(columnCountAtom)

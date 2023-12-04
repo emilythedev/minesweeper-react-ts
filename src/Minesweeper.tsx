@@ -2,8 +2,8 @@ import { useHydrateAtoms } from "jotai/utils"
 import { useMemo } from "react"
 import Board from "./Board"
 import Status from "./Status"
-import { boardAtom } from "./atoms"
-import { generateBoard } from "./helpers"
+import { boardAtom } from "./shared/atoms"
+import { generateBoard } from "./shared/helpers"
 
 interface Props extends LevelProps {
   onRestart(): void
