@@ -29,7 +29,7 @@ const loseAtom = atom<boolean>(false)
 const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
 
 const boardAtom = atom([], (get, set, update: Cell[][]) => {
-  console.table(update)
+  // console.table(update)
   const rows = update.length
   const cols = update[0]?.length || 0
   set(rowCountAtom, rows)
