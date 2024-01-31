@@ -152,5 +152,5 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
 }
 
 export {
-  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, rowCountAtom, winAtom
+  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, loseAtom, rowCountAtom, winAtom
 };

@@ -39,7 +39,7 @@ const Status = ({onRestart}: Props) => {
           Unused <FlagWord plural />: <span className="count">{flagCount}</span>
         </div>
       ) : (
-        <span className="grow-1">{win ? 'win' : 'lose'}!</span>
+        <span className="grow-1">{win ? 'Congratulations!' : 'Oh no...'}!</span>
       )}
       <Button type="button" onClick={onRestart}>Restart</Button>
     </StatusContainer>
