@@ -1,6 +1,6 @@
-import { Getter, Setter, atom } from "jotai";
-import { atomFamily } from "jotai/utils";
-import { difference } from 'lodash';
+import { Getter, Setter, atom } from 'jotai'
+import { atomFamily } from 'jotai/utils'
+import { difference } from 'lodash'
 
 const rowCountAtom = atom<number>(0)
 const columnCountAtom = atom<number>(0)
@@ -153,4 +153,4 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
 
 export {
   boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, loseAtom, rowCountAtom, winAtom
-};
+}

@@ -1,6 +1,6 @@
+import MouseSvg from '@/assets/mouse.svg?react'
+import FlagWord from "@/shared/ui/FlagWord"
 import styled, { css } from "styled-components"
-import MouseSvg from '../assets/mouse.svg?react'
-import FlagWord from "../shared/ui/FlagWord"
 
 const MouseIcon = styled(MouseSvg)<{$click: 'left' | 'right'}>`
   width: 36px;

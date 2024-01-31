@@ -21,6 +21,9 @@
     "noFallthroughCasesInSwitch": true,
 
     "typeRoots": ["types", "node_modules/@types"],
+		"paths": {
+			"@/*": ["./src/*"]
+		}
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
