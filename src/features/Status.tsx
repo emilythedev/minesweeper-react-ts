@@ -1,8 +1,8 @@
 import { useAtom, useAtomValue } from "jotai"
 import styled from "styled-components"
-import { endAtom, flagCountAtom, winAtom } from "./shared/atoms"
-import Button from "./shared/ui/Button"
-import FlagWord from "./shared/ui/FlagWord"
+import { endAtom, flagCountAtom, winAtom } from "../shared/atoms"
+import Button from "../shared/ui/Button"
+import FlagWord from "../shared/ui/FlagWord"
 
 interface Props {
   onRestart(): void

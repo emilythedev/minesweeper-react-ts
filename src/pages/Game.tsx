@@ -1,5 +1,5 @@
 import { Provider } from "jotai"
-import Minesweeper from "../Minesweeper"
+import Minesweeper from "../features/Minesweeper"
 
 interface Props {
   level: LevelProps
