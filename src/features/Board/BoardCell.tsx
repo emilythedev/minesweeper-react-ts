@@ -1,4 +1,4 @@
-import { cellStateAtomFamily } from '@/shared/atoms'
+import { cellActionAtomFamily } from '@/shared/atoms'
 import BaseTile from '@/shared/ui/BaseTile'
 import FlagTile from '@/shared/ui/FlagTile'
 import RevealedBomb from '@/shared/ui/RevealedBomb'
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const BoardCell = ({id, content}: Props) => {
-  const [state, setState] = useAtom(cellStateAtomFamily(id))
+  const [state, setState] = useAtom(cellActionAtomFamily(id))
 
   if (state === 'revealed') {
     return typeof content === 'number' ? (

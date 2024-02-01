@@ -5,7 +5,7 @@ export const columnCountAtom = atom<number>(0)
 export const cellArrayAtom = atom<Cell[]>([])
 export const bombIdArrayAtom = atom<number[]>([])
 
-export const unvisitedCellCountAtom = atom<number>(0)
+export const normalCellCountAtom = atom<number>(0)
 
 export const boardAtom = atom([], (get, set, update: Cell[][]) => {
   // console.table(update)
@@ -27,5 +27,5 @@ export const boardAtom = atom([], (get, set, update: Cell[][]) => {
   })
   set(bombIdArrayAtom, bombIds)
   set(cellArrayAtom, update.flat())
-  set(unvisitedCellCountAtom, rows * cols)
+  set(normalCellCountAtom, rows * cols)
 })

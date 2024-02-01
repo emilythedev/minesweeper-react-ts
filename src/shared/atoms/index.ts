@@ -10,5 +10,5 @@ export {
 } from './state'
 
 export {
-  cellStateAtomFamily
+  cellActionAtomFamily
 } from './action'

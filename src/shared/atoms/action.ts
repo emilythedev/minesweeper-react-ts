@@ -1,18 +1,18 @@
 import { Getter, Setter, atom } from 'jotai'
 import { atomFamily } from 'jotai/utils'
-import { cellArrayAtom, columnCountAtom, rowCountAtom, unvisitedCellCountAtom } from './board'
-import { cellStateAtom, endAtom, flagIdArrayAtom, loseAtom } from './state'
+import { cellArrayAtom, columnCountAtom, normalCellCountAtom, rowCountAtom } from './board'
+import { cellStateAtomFamily, endAtom, flagIdArrayAtom, loseAtom } from './state'
 
-export const cellStateAtomFamily = atomFamily((id: number) => {
+export const cellActionAtomFamily = atomFamily((id: number) => {
   return atom(
-    (get) => get(cellStateAtom(id)),
+    (get) => get(cellStateAtomFamily(id)),
     (get, set, newState: CellState) => {
       if (get(endAtom)) return
 
-      const state = get(cellStateAtom(id))
+      const state = get(cellStateAtomFamily(id))
       if (state === 'flagged' && newState === 'normal') {
-        set(cellStateAtom(id), newState)
-        set(unvisitedCellCountAtom, (prev) => prev + 1)
+        set(cellStateAtomFamily(id), newState)
+        set(normalCellCountAtom, (prev) => prev + 1)
 
         set(flagIdArrayAtom, (flags) => {
           const newFlags = [...flags]
@@ -22,8 +22,8 @@ export const cellStateAtomFamily = atomFamily((id: number) => {
       }
 
       if (state === 'normal') {
-        set(cellStateAtom(id), newState)
-        set(unvisitedCellCountAtom, (prev) => prev - 1)
+        set(cellStateAtomFamily(id), newState)
+        set(normalCellCountAtom, (prev) => prev - 1)
 
         if (newState === 'revealed') {
           if (get(cellArrayAtom)[id] === '*') {
@@ -62,7 +62,7 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
       if (!(id >= 0 && id < totalCells && visitedIds.indexOf(id) === -1)) {
         return false
       }
-      if (get(cellStateAtom(id)) === 'revealed' || cellArray[id] === '*') {
+      if (get(cellStateAtomFamily(id)) === 'revealed' || cellArray[id] === '*') {
         return false
       }
       return true
@@ -78,10 +78,10 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
 
     for (let i = 0; i < surroundings.length; i++) {
       const id = surroundings[i]
-      const state = get(cellStateAtom(id))
+      const state = get(cellStateAtomFamily(id))
       const content = cellArray[id]
 
-      set(cellStateAtom(id), 'revealed')
+      set(cellStateAtomFamily(id), 'revealed')
 
       // update statistics
       if (state === 'flagged') {
@@ -91,7 +91,7 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
           return newFlags
         })
       } else {
-        set(unvisitedCellCountAtom, (prev) => prev - 1)
+        set(normalCellCountAtom, (prev) => prev - 1)
       }
 
       // transverse when cell content is 0
