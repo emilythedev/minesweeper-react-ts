@@ -10,7 +10,14 @@ interface Props extends LevelProps {
 }
 
 const Minesweeper = (props: Props) => {
-  const board = useMemo(() => generateBoard(props.rows, props.cols, props.totalBombs), [])
+  const board = useMemo(() => {
+    return generateBoard(
+      props.rows,
+      props.cols,
+      props.totalBombs
+    )
+  }, [props.rows, props.cols, props.totalBombs])
+
   useHydrateAtoms(new Map([
     [boardAtom, board],
   ]))
