@@ -1,7 +1,7 @@
-import { cellArrayAtom, columnCountAtom, loseAtom, winAtom } from '@/shared/atoms'
+import { cellArrayAtom, columnCountAtom, loseAtom, onWinEffectAtom, winAtom } from '@/shared/atoms'
 import FlagTile from '@/shared/ui/FlagTile'
 import RevealedBomb from '@/shared/ui/RevealedBomb'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import styled, { css, keyframes } from 'styled-components'
 import BoardCell from './BoardCell'
 
@@ -65,6 +65,7 @@ const Board = () => {
   const cells = useAtomValue(cellArrayAtom)
   const lose = useAtomValue(loseAtom)
   const win = useAtomValue(winAtom)
+  useAtom(onWinEffectAtom)
 
   return (
     <Wrapper $lose={lose} $win={win}>

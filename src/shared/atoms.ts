@@ -1,4 +1,5 @@
 import { Getter, Setter, atom } from 'jotai'
+import { atomEffect } from 'jotai-effect'
 import { atomFamily } from 'jotai/utils'
 import { difference } from 'lodash'
 
@@ -27,6 +28,15 @@ const winAtom = atom((get) => {
 })
 const loseAtom = atom<boolean>(false)
 const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
+
+const onWinEffectAtom = atomEffect((get, set) => {
+  // reveal all bombs on win
+  if (get(winAtom)) {
+    get(bombIdArrayAtom).forEach((id) => {
+      set(cellStateAtom(id), (state) => state === 'normal' ? 'revealed' : state)
+    })
+  }
+})
 
 const boardAtom = atom([], (get, set, update: Cell[][]) => {
   // console.table(update)
@@ -153,5 +163,5 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
 }
 
 export {
-  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, loseAtom, rowCountAtom, winAtom
+  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, loseAtom, onWinEffectAtom, rowCountAtom, winAtom
 }
