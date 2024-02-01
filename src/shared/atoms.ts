@@ -51,6 +51,7 @@ const boardAtom = atom([], (get, set, update: Cell[][]) => {
   set(unvisitedCellCountAtom, rows * cols)
 })
 
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const cellStateAtom = atomFamily((id: number) => atom<CellState>('normal'))
 const cellStateAtomFamily = atomFamily((id: number) => {
   return atom(
