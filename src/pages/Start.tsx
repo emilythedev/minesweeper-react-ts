@@ -1,6 +1,6 @@
-import SelectLevel from "@/features/SelectLevel"
-import Tutorial from "@/features/Tutorial"
-import styled from "styled-components"
+import SelectLevel from '@/features/SelectLevel'
+import Tutorial from '@/features/Tutorial'
+import styled from 'styled-components'
 
 const FlexContainer = styled.div`
   display: flex;

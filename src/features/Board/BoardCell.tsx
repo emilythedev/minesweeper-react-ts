@@ -1,9 +1,9 @@
-import { cellStateAtomFamily } from "@/shared/atoms"
-import BaseTile from "@/shared/ui/BaseTile"
-import FlagTile from "@/shared/ui/FlagTile"
-import RevealedTile from "@/shared/ui/RevealedTile"
-import { useAtom } from "jotai"
-import { MouseEvent } from "react"
+import { cellStateAtomFamily } from '@/shared/atoms'
+import BaseTile from '@/shared/ui/BaseTile'
+import FlagTile from '@/shared/ui/FlagTile'
+import RevealedTile from '@/shared/ui/RevealedTile'
+import { useAtom } from 'jotai'
+import { MouseEvent } from 'react'
 
 interface Props {
   id: number,

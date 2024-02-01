@@ -1,8 +1,8 @@
-import { cellArrayAtom, columnCountAtom, loseAtom, winAtom } from "@/shared/atoms"
-import FlagTile from "@/shared/ui/FlagTile"
-import { useAtomValue } from "jotai"
-import styled, { css, keyframes } from "styled-components"
-import BoardCell from "./BoardCell"
+import { cellArrayAtom, columnCountAtom, loseAtom, winAtom } from '@/shared/atoms'
+import FlagTile from '@/shared/ui/FlagTile'
+import { useAtomValue } from 'jotai'
+import styled, { css, keyframes } from 'styled-components'
+import BoardCell from './BoardCell'
 
 interface WrapperProps {
   $lose: boolean,

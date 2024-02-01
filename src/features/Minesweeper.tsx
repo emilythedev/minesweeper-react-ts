@@ -1,9 +1,9 @@
-import Board from "@/features/Board"
-import Status from "@/features/Status"
-import { boardAtom } from "@/shared/atoms"
-import { generateBoard } from "@/shared/helpers"
-import { useHydrateAtoms } from "jotai/utils"
-import { useMemo } from "react"
+import Board from '@/features/Board'
+import Status from '@/features/Status'
+import { boardAtom } from '@/shared/atoms'
+import { generateBoard } from '@/shared/helpers'
+import { useHydrateAtoms } from 'jotai/utils'
+import { useMemo } from 'react'
 
 interface Props extends LevelProps {
   onRestart(): void

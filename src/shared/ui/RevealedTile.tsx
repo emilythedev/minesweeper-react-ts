@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import BaseTile from "./BaseTile";
+import styled, { css } from 'styled-components';
+import BaseTile from './BaseTile';
 
 const RevealedTile = styled(BaseTile) <{ $content: Cell; }> `
   border-color: transparent;

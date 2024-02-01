@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 const FlagChar = styled.span`
   font-style: italic;
