@@ -16,5 +16,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@stylistic/indent': ['error', 2],
   },
 }

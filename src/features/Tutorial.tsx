@@ -46,10 +46,10 @@ const CellOutline = styled.span`
 const Tutorial = () => {
   return (
     <TutorialContainer>
-        <MouseIcon $click="left" role="img" title="Left-click" />
-        <div>Reveal the <CellOutline>cell</CellOutline>.</div>
-        <MouseIcon $click="right" role="img" title="Right-click" />
-        <div>Set/Unset a <FlagWord />.</div>
+      <MouseIcon $click="left" role="img" title="Left-click" />
+      <div>Reveal the <CellOutline>cell</CellOutline>.</div>
+      <MouseIcon $click="right" role="img" title="Right-click" />
+      <div>Set/Unset a <FlagWord />.</div>
     </TutorialContainer>
   )
 }
