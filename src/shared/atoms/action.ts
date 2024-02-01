@@ -1,69 +1,9 @@
 import { Getter, Setter, atom } from 'jotai'
-import { atomEffect } from 'jotai-effect'
 import { atomFamily } from 'jotai/utils'
-import { difference } from 'lodash'
+import { cellArrayAtom, columnCountAtom, rowCountAtom, unvisitedCellCountAtom } from './board'
+import { cellStateAtom, endAtom, flagIdArrayAtom, loseAtom } from './state'
 
-const rowCountAtom = atom<number>(0)
-const columnCountAtom = atom<number>(0)
-const cellArrayAtom = atom<Cell[]>([])
-const bombIdArrayAtom = atom<number[]>([])
-
-const flagIdArrayAtom = atom<number[]>([])
-const unvisitedCellCountAtom = atom<number>(0)
-const flagCountAtom = atom<number>((get) => {
-  return get(bombIdArrayAtom).length - get(flagIdArrayAtom).length
-})
-
-const winAtom = atom((get) => {
-  const bombs = get(bombIdArrayAtom)
-  const flags = get(flagIdArrayAtom)
-  if (flags.every((flag) => bombs.includes(flag))) {
-    const bombsLeft = difference(bombs, flags)
-    if (!bombsLeft.length || bombsLeft.length === get(unvisitedCellCountAtom)) {
-      return true
-    }
-  }
-
-  return false
-})
-const loseAtom = atom<boolean>(false)
-const endAtom = atom((get) => (get(loseAtom) || get(winAtom)))
-
-const onWinEffectAtom = atomEffect((get, set) => {
-  // reveal all bombs on win
-  if (get(winAtom)) {
-    get(bombIdArrayAtom).forEach((id) => {
-      set(cellStateAtom(id), (state) => state === 'normal' ? 'revealed' : state)
-    })
-  }
-})
-
-const boardAtom = atom([], (get, set, update: Cell[][]) => {
-  // console.table(update)
-  const rows = update.length
-  const cols = update[0]?.length || 0
-  set(rowCountAtom, rows)
-  set(columnCountAtom, cols)
-
-  const bombIds = [] as number[]
-  const emptyCellCoords = [] as [number, number][]
-  update.forEach((row, ri)=> {
-    row.forEach((cell, ci) => {
-      if (cell === '*') {
-        bombIds.push(ri * cols + ci)
-      } else if (cell === 0) {
-        emptyCellCoords.push([ri, ci])
-      }
-    })
-  })
-  set(bombIdArrayAtom, bombIds)
-  set(cellArrayAtom, update.flat())
-  set(unvisitedCellCountAtom, rows * cols)
-})
-
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-const cellStateAtom = atomFamily((id: number) => atom<CellState>('normal'))
-const cellStateAtomFamily = atomFamily((id: number) => {
+export const cellStateAtomFamily = atomFamily((id: number) => {
   return atom(
     (get) => get(cellStateAtom(id)),
     (get, set, newState: CellState) => {
@@ -160,8 +100,4 @@ function clearSurroundingCells(get: Getter, set: Setter, cellId: number) {
       }
     }
   }
-}
-
-export {
-  boardAtom, cellArrayAtom, cellStateAtomFamily, columnCountAtom, endAtom, flagCountAtom, loseAtom, onWinEffectAtom, rowCountAtom, winAtom
 }
