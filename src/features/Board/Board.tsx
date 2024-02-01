@@ -1,5 +1,6 @@
 import { cellArrayAtom, columnCountAtom, loseAtom, winAtom } from '@/shared/atoms'
 import FlagTile from '@/shared/ui/FlagTile'
+import RevealedBomb from '@/shared/ui/RevealedBomb'
 import { useAtomValue } from 'jotai'
 import styled, { css, keyframes } from 'styled-components'
 import BoardCell from './BoardCell'
@@ -32,6 +33,12 @@ const Wrapper = styled.div<WrapperProps>`
 
     if (props.$win) {
       return css`
+        ${RevealedBomb} {
+          color: ${props.theme.primary};
+          transform-origin: center center;
+          animation: 1s linear infinite ${rotate};
+        }
+
         ${FlagTile}::before {
           content: '*';
           transform-origin: center center;

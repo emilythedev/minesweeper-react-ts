@@ -1,6 +1,7 @@
 import { cellStateAtomFamily } from '@/shared/atoms'
 import BaseTile from '@/shared/ui/BaseTile'
 import FlagTile from '@/shared/ui/FlagTile'
+import RevealedBomb from '@/shared/ui/RevealedBomb'
 import RevealedTile from '@/shared/ui/RevealedTile'
 import { useAtom } from 'jotai'
 import { MouseEvent } from 'react'
@@ -14,8 +15,10 @@ const BoardCell = ({id, content}: Props) => {
   const [state, setState] = useAtom(cellStateAtomFamily(id))
 
   if (state === 'revealed') {
-    return (
+    return typeof content === 'number' ? (
       <RevealedTile $content={content} />
+    ) : (
+      <RevealedBomb />
     )
   }
 
