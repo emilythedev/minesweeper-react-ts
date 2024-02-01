@@ -1,8 +1,8 @@
-import { atom } from 'jotai';
-import { atomEffect } from 'jotai-effect';
-import { atomFamily } from 'jotai/utils';
-import { difference } from 'lodash';
-import { bombIdArrayAtom, normalCellCountAtom } from './board';
+import { atom } from 'jotai'
+import { atomEffect } from 'jotai-effect'
+import { atomFamily } from 'jotai/utils'
+import { difference } from 'lodash'
+import { bombIdArrayAtom, normalCellCountAtom } from './board'
 
 export const cellStateAtomFamily = atomFamily((id: number) => atom<CellState>('normal')) // eslint-disable-line @typescript-eslint/no-unused-vars
 
