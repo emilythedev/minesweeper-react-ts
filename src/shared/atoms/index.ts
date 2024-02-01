@@ -2,13 +2,13 @@ export {
   boardAtom,
   cellArrayAtom,
   columnCountAtom,
-  rowCountAtom
+  rowCountAtom,
 } from './board'
 
 export {
-  endAtom, flagCountAtom, loseAtom, onWinEffectAtom, winAtom
+  endAtom, flagCountAtom, loseAtom, onWinEffectAtom, winAtom,
 } from './state'
 
 export {
-  cellActionAtomFamily
+  cellActionAtomFamily,
 } from './action'

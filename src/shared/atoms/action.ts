@@ -37,7 +37,7 @@ export const cellActionAtomFamily = atomFamily((id: number) => {
           set(flagIdArrayAtom, (flags) => [...flags, id])
         }
       }
-    }
+    },
   )
 })
 

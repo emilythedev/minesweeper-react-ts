@@ -17,7 +17,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@stylistic/indent': ['error', 2],
-    '@stylistic/comma-dangle': ['error', 'only-multiline'],
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     '@stylistic/quotes': ['error', 'single'],
     '@stylistic/semi': ['error', 'never'],
   },

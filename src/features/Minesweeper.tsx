@@ -14,7 +14,7 @@ const Minesweeper = (props: Props) => {
     return generateBoard(
       props.rows,
       props.cols,
-      props.totalBombs
+      props.totalBombs,
     )
   }, [props.rows, props.cols, props.totalBombs])
 
