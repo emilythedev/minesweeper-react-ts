@@ -1,9 +1,9 @@
-import { cellActionAtomFamily } from '@/shared/atoms'
+import { cellActionAtomFamily, endAtom } from '@/shared/atoms'
 import BaseTile from '@/shared/ui/BaseTile'
 import FlagTile from '@/shared/ui/FlagTile'
 import RevealedBomb from '@/shared/ui/RevealedBomb'
 import RevealedTile from '@/shared/ui/RevealedTile'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { MouseEvent } from 'react'
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 
 const BoardCell = ({id, content}: Props) => {
   const [state, setState] = useAtom(cellActionAtomFamily(id))
+  const hasEnded = useAtomValue(endAtom)
 
   if (state === 'revealed') {
     return typeof content === 'number' ? (
@@ -30,12 +31,13 @@ const BoardCell = ({id, content}: Props) => {
     e.preventDefault()
   }
 
-  let Component = BaseTile
   if (state === 'flagged') {
-    Component = FlagTile
+    return (
+      <FlagTile onClick={handleClick} onContextMenu={handleFlag} />
+    )
   }
   return (
-    <Component onClick={handleClick} onContextMenu={handleFlag} />
+    <BaseTile $hoverable={!hasEnded} onClick={handleClick} onContextMenu={handleFlag} />
   )
 }
 
