@@ -32,7 +32,7 @@ const Wrapper = styled.div<WrapperProps>`
 
         ${FlagTile}::before {
           content: '*';
-          transform-origin: center center;
+          transform-origin: 50% 52%;
           animation: 1s linear infinite ${rotate};
         }
       `
