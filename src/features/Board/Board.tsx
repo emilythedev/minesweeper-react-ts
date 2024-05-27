@@ -1,24 +1,15 @@
+import { grayscale, rotate } from '@/shared/animations'
 import { cellArrayAtom, columnCountAtom, loseAtom, onWinEffectAtom, winAtom } from '@/shared/atoms'
 import FlagTile from '@/shared/ui/FlagTile'
 import RevealedBomb from '@/shared/ui/RevealedBomb'
 import { useAtom, useAtomValue } from 'jotai'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import BoardCell from './BoardCell'
 
 interface WrapperProps {
   $lose: boolean,
   $win: boolean,
 }
-
-const grayscale = keyframes`
-  0% { filter: grayscale(0); }
-  100% { filter: grayscale(1) invert(.1); }
-`
-const rotate = keyframes`
-  0% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.5) rotate(180deg); }
-  100% { transform: scale(1) rotate(360deg); }
-`
 
 const Wrapper = styled.div<WrapperProps>`
   width: max-content;

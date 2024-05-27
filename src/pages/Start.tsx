@@ -1,5 +1,6 @@
 import SelectLevel from '@/features/SelectLevel'
 import Tutorial from '@/features/Tutorial'
+import { rotate } from '@/shared/animations'
 import styled from 'styled-components'
 
 const FlexContainer = styled.div`
@@ -11,9 +12,23 @@ const FlexContainer = styled.div`
 const Title = styled.h1`
   font-weight: bold;
   color: ${props => props.theme.primary};
-  background-color: ${props => props.theme.colors.black};
   font-size: 3em;
   letter-spacing: .2em;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    background-image: url(/favicon.svg);
+    background-size: contain;
+    transform-origin: center center;
+    animation: 5s linear infinite ${rotate};
+  }
 `
 
 interface Props {
