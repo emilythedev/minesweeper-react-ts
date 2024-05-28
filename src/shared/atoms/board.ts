@@ -7,7 +7,7 @@ export const bombIdArrayAtom = atom<number[]>([])
 
 export const normalCellCountAtom = atom<number>(0)
 
-export const boardAtom = atom([], (get, set, update: Cell[][]) => {
+export const boardAtom = atom([], (_, set, update: Cell[][]) => {
   // console.table(update)
   const rows = update.length
   const cols = update[0]?.length || 0

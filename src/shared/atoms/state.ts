@@ -4,7 +4,7 @@ import { atomFamily } from 'jotai/utils'
 import { difference } from 'lodash'
 import { bombIdArrayAtom, normalCellCountAtom } from './board'
 
-export const cellStateAtomFamily = atomFamily((id: number) => atom<CellState>('normal')) // eslint-disable-line @typescript-eslint/no-unused-vars
+export const cellStateAtomFamily = atomFamily((_id: number) => atom<CellState>('normal')) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 export const flagIdArrayAtom = atom<number[]>([])
 export const flagCountAtom = atom<number>((get) => {
